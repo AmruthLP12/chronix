@@ -14,7 +14,7 @@ import { useColorScheme } from "@/components/useColorScheme";
 
 export {
   // Catch any errors thrown by the Layout component.
-  ErrorBoundary
+  ErrorBoundary,
 } from "expo-router";
 
 export const unstable_settings = {
@@ -56,7 +56,24 @@ function RootLayoutNav() {
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: "modal" }} />
+        <Stack.Screen
+          name="modal"
+          options={{
+            presentation: "modal",
+            title: "About Chronix",
+            headerStyle: {
+              backgroundColor: colorScheme === "dark" ? "#0B0F19" : "#FFFFFF",
+            },
+            headerTitleStyle: {
+              color: colorScheme === "dark" ? "#FFFFFF" : "#1E293B",
+              fontWeight: "900",
+            },
+            headerTintColor: colorScheme === "dark" ? "#FFFFFF" : "#1E293B",
+            headerShadowVisible: false,
+          }}
+        />
+        <Stack.Screen name="age" options={{ headerShown: false }} />
+        <Stack.Screen name="time" options={{ headerShown: false }} />
       </Stack>
     </ThemeProvider>
   );

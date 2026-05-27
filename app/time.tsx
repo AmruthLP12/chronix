@@ -21,7 +21,7 @@ export default function TimeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f4f4f4",
+    backgroundColor: "#0B0F19",
     paddingTop: 20,
   },
 });

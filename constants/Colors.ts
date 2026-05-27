@@ -1,19 +1,19 @@
-const tintColorLight = '#2f95dc';
-const tintColorDark = '#fff';
+const tintColorLight = '#6366F1'; // Premium Indigo
+const tintColorDark = '#22D3EE';  // Premium Cyan
 
 export default {
   light: {
-    text: '#000',
-    background: '#fff',
+    text: '#1E293B',
+    background: '#F8FAFC',
     tint: tintColorLight,
-    tabIconDefault: '#ccc',
+    tabIconDefault: '#94A3B8',
     tabIconSelected: tintColorLight,
   },
   dark: {
-    text: '#fff',
-    background: '#000',
+    text: '#F1F5F9',
+    background: '#0B0F19', // Premium Deep Space Navy
     tint: tintColorDark,
-    tabIconDefault: '#ccc',
+    tabIconDefault: '#475569',
     tabIconSelected: tintColorDark,
   },
 };
