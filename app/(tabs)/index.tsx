@@ -1,104 +1,87 @@
 import { FontAwesome } from "@expo/vector-icons";
 import { router } from "expo-router";
 import React from "react";
-import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const HomeScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
-      {/* ABSOLUTE INFO TRIGGER */}
-      <View style={styles.infoButtonContainer}>
-        <TouchableOpacity onPress={() => router.push("/modal")} activeOpacity={0.7}>
-          <FontAwesome name="info-circle" size={24} color="#94A3B8" />
-        </TouchableOpacity>
-      </View>
-
       <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
-        {/* BRAND HEADER */}
+        {/* SUBTLE HUB HEADER */}
         <View style={styles.headerContainer}>
-          <View style={styles.logoOuterRing}>
-            <View style={styles.logoInnerRing}>
-              <Image
-                source={require("../../assets/images/logo.png")}
-                style={styles.logo}
-                resizeMode="cover"
-              />
-            </View>
-          </View>
-          <Text style={styles.header}>CHRONIX</Text>
-          <Text style={styles.subHeading}>Temporal Utility Hub</Text>
+          <Text style={styles.subHeading}>Personal Helper Workspace</Text>
         </View>
 
         {/* ACTIVE UTILITIES */}
         <View style={styles.sectionHeader}>
           <Text style={styles.sectionTitle}>Active Utilities</Text>
           <View style={styles.activeBadge}>
-            <Text style={styles.activeBadgeText}>2 RUNNING</Text>
+            <Text style={styles.activeBadgeText}>2 Active</Text>
           </View>
         </View>
 
         {/* AGE CALCULATOR CARD */}
         <TouchableOpacity
-          style={[styles.card, styles.cardAge]}
+          style={styles.card}
           onPress={() => router.push("/age")}
-          activeOpacity={0.85}
+          activeOpacity={0.8}
         >
           <View style={styles.cardHeader}>
-            <View style={[styles.iconContainer, styles.iconAge]}>
-              <FontAwesome name="hourglass-half" size={24} color="#A78BFA" />
+            <View style={styles.iconContainer}>
+              <FontAwesome name="calendar" size={20} color="#60A5FA" />
             </View>
             <View style={styles.statusDotActive} />
           </View>
           <View style={styles.cardBody}>
             <Text style={styles.cardTitle}>Age Calculator</Text>
             <Text style={styles.cardDescription}>
-              Precision time interval metrics. Compute precise years, months, weeks, and total days between dates.
+              Precision time interval calculation. Compute years, months, weeks, and total days elapsed between two selected dates.
             </Text>
           </View>
           <View style={styles.cardFooter}>
-            <Text style={[styles.actionText, { color: "#A78BFA" }]}>Launch Tool</Text>
-            <FontAwesome name="arrow-right" size={12} color="#A78BFA" />
+            <Text style={styles.actionText}>Open Utility</Text>
+            <FontAwesome name="chevron-right" size={10} color="#60A5FA" />
           </View>
         </TouchableOpacity>
 
         {/* TIME CONVERTER CARD */}
         <TouchableOpacity
-          style={[styles.card, styles.cardTime]}
+          style={styles.card}
           onPress={() => router.push("/time")}
-          activeOpacity={0.85}
+          activeOpacity={0.8}
         >
           <View style={styles.cardHeader}>
-            <View style={[styles.iconContainer, styles.iconTime]}>
-              <FontAwesome name="exchange" size={22} color="#22D3EE" />
+            <View style={styles.iconContainer}>
+              <FontAwesome name="clock-o" size={20} color="#60A5FA" />
             </View>
             <View style={styles.statusDotActive} />
           </View>
           <View style={styles.cardBody}>
             <Text style={styles.cardTitle}>Time Converter</Text>
             <Text style={styles.cardDescription}>
-              Instant format shifting. Seamlessly convert military 24-hour time to standard 12-hour clock and back.
+              Standard to military format conversion. Seamlessly shift formats between 12-hour AM/PM cycles and 24-hour logs.
             </Text>
           </View>
           <View style={styles.cardFooter}>
-            <Text style={[styles.actionText, { color: "#22D3EE" }]}>Launch Tool</Text>
-            <FontAwesome name="arrow-right" size={12} color="#22D3EE" />
+            <Text style={styles.actionText}>Open Utility</Text>
+            <FontAwesome name="chevron-right" size={10} color="#60A5FA" />
           </View>
         </TouchableOpacity>
 
-        {/* FUTURE UTILITIES */}
+        {/* PIPELINE SECTION */}
         <View style={[styles.sectionHeader, { marginTop: 15 }]}>
           <Text style={styles.sectionTitle}>Pipeline Modules</Text>
           <View style={styles.pipelineBadge}>
-            <Text style={styles.pipelineBadgeText}>IN PLAN</Text>
+            <Text style={styles.pipelineBadgeText}>Future Growth</Text>
           </View>
         </View>
 
         {/* UPCOMING UTILITY 1 */}
-        <View style={[styles.card, styles.cardFuture]} pointerEvents="none">
+        <View style={styles.cardFuture} pointerEvents="none">
           <View style={styles.cardHeader}>
-            <View style={[styles.iconContainer, styles.iconFuture]}>
-              <FontAwesome name="globe" size={24} color="#64748B" />
+            <View style={styles.iconContainerFuture}>
+              <FontAwesome name="globe" size={18} color="#475569" />
             </View>
             <View style={styles.badgeComingSoon}>
               <Text style={styles.comingSoonText}>COMING SOON</Text>
@@ -107,16 +90,16 @@ const HomeScreen = () => {
           <View style={styles.cardBody}>
             <Text style={styles.cardTitleFuture}>Timezone Sync</Text>
             <Text style={styles.cardDescriptionFuture}>
-              Coordinated global temporal mapping. Track relative time offsets across multiple international locations.
+              Track relative offsets, clock conversions, and coordinates across international cities concurrently.
             </Text>
           </View>
         </View>
 
         {/* UPCOMING UTILITY 2 */}
-        <View style={[styles.card, styles.cardFuture]} pointerEvents="none">
+        <View style={styles.cardFuture} pointerEvents="none">
           <View style={styles.cardHeader}>
-            <View style={[styles.iconContainer, styles.iconFuture]}>
-              <FontAwesome name="bell-o" size={22} color="#64748B" />
+            <View style={styles.iconContainerFuture}>
+              <FontAwesome name="bell-o" size={18} color="#475569" />
             </View>
             <View style={styles.badgeComingSoon}>
               <Text style={styles.comingSoonText}>COMING SOON</Text>
@@ -125,7 +108,7 @@ const HomeScreen = () => {
           <View style={styles.cardBody}>
             <Text style={styles.cardTitleFuture}>Chrono Countdown</Text>
             <Text style={styles.cardDescriptionFuture}>
-              Intelligent alarm and precision milestone tracking. Dynamic visual stopwatch timers and cycle calculators.
+              Visual stopwatches, precision loop interval timers, and custom helper alarms.
             </Text>
           </View>
         </View>
@@ -139,199 +122,149 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#0B0F19", // Deep Space Navy
+    backgroundColor: "#0B0F19", // Clean Deep Slate Charcoal
   },
   scrollContent: {
     paddingHorizontal: 20,
-    paddingTop: 30,
+    paddingTop: 10,
     paddingBottom: 40,
   },
   headerContainer: {
-    alignItems: "center",
-    marginBottom: 40,
-  },
-  logoOuterRing: {
-    width: 104,
-    height: 104,
-    borderRadius: 52,
-    backgroundColor: "rgba(139, 92, 246, 0.15)",
-    justifyContent: "center",
-    alignItems: "center",
-    borderWidth: 1.5,
-    borderColor: "rgba(139, 92, 246, 0.3)",
-    marginBottom: 16,
-    shadowColor: "#8B5CF6",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 15,
-    elevation: 8,
-  },
-  logoInnerRing: {
-    width: 90,
-    height: 90,
-    borderRadius: 45,
-    backgroundColor: "#111827",
-    overflow: "hidden",
-    justifyContent: "center",
-    alignItems: "center",
-    borderWidth: 1,
-    borderColor: "rgba(34, 211, 238, 0.2)",
-  },
-  logo: {
-    width: 90,
-    height: 90,
-  },
-  header: {
-    fontSize: 28,
-    fontWeight: "900",
-    color: "#FFFFFF",
-    letterSpacing: 4,
-    textShadowColor: "rgba(139, 92, 246, 0.5)",
-    textShadowOffset: { width: 0, height: 2 },
-    textShadowRadius: 8,
+    marginBottom: 20,
+    borderBottomWidth: 1,
+    borderBottomColor: "rgba(255, 255, 255, 0.05)",
+    paddingBottom: 15,
   },
   subHeading: {
     fontSize: 14,
     fontWeight: "600",
-    color: "#94A3B8",
-    marginTop: 6,
-    letterSpacing: 2,
-    textTransform: "uppercase",
+    color: "#64748B",
+    letterSpacing: 0.5,
   },
   sectionHeader: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     marginBottom: 16,
-    marginTop: 10,
   },
   sectionTitle: {
-    fontSize: 16,
-    fontWeight: "800",
-    color: "#F1F5F9",
-    letterSpacing: 1.5,
+    fontSize: 13,
+    fontWeight: "700",
+    color: "#94A3B8",
+    letterSpacing: 1,
     textTransform: "uppercase",
   },
   activeBadge: {
-    backgroundColor: "rgba(34, 211, 238, 0.12)",
-    paddingHorizontal: 10,
-    paddingVertical: 4,
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: "rgba(34, 211, 238, 0.3)",
+    backgroundColor: "rgba(96, 165, 250, 0.08)",
+    paddingHorizontal: 8,
+    paddingVertical: 3,
+    borderRadius: 6,
+    borderWidth: 0.5,
+    borderColor: "rgba(96, 165, 250, 0.15)",
   },
   activeBadgeText: {
-    fontSize: 10,
-    fontWeight: "800",
-    color: "#22D3EE",
-    letterSpacing: 1,
+    fontSize: 9,
+    fontWeight: "700",
+    color: "#60A5FA",
   },
   pipelineBadge: {
-    backgroundColor: "rgba(100, 116, 139, 0.15)",
-    paddingHorizontal: 10,
-    paddingVertical: 4,
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: "rgba(100, 116, 139, 0.3)",
+    backgroundColor: "rgba(71, 85, 105, 0.15)",
+    paddingHorizontal: 8,
+    paddingVertical: 3,
+    borderRadius: 6,
+    borderWidth: 0.5,
+    borderColor: "rgba(71, 85, 105, 0.25)",
   },
   pipelineBadgeText: {
-    fontSize: 10,
-    fontWeight: "800",
-    color: "#94A3B8",
-    letterSpacing: 1,
+    fontSize: 9,
+    fontWeight: "700",
+    color: "#64748B",
   },
   card: {
-    backgroundColor: "#161E2E", // Glass-styled card background
-    borderRadius: 24,
-    padding: 24,
-    marginBottom: 20,
+    backgroundColor: "#161E2E", // Matte charcoal card background
+    borderRadius: 16,
+    padding: 20,
+    marginBottom: 18,
     borderWidth: 1,
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.15,
-    shadowRadius: 12,
-    elevation: 4,
-  },
-  cardAge: {
-    borderColor: "rgba(139, 92, 246, 0.2)",
-    shadowColor: "#8B5CF6",
-  },
-  cardTime: {
-    borderColor: "rgba(34, 211, 238, 0.2)",
-    shadowColor: "#22D3EE",
+    borderColor: "rgba(255, 255, 255, 0.06)",
   },
   cardFuture: {
-    backgroundColor: "rgba(22, 30, 46, 0.4)",
-    borderColor: "rgba(100, 116, 139, 0.15)",
-    opacity: 0.7,
+    backgroundColor: "rgba(22, 30, 46, 0.3)",
+    borderRadius: 16,
+    padding: 20,
+    marginBottom: 18,
+    borderWidth: 1,
+    borderColor: "rgba(255, 255, 255, 0.03)",
+    opacity: 0.6,
   },
   cardHeader: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: 16,
+    marginBottom: 12,
   },
   iconContainer: {
-    width: 48,
-    height: 48,
-    borderRadius: 16,
+    width: 38,
+    height: 38,
+    borderRadius: 10,
+    backgroundColor: "rgba(255, 255, 255, 0.03)",
+    justifyContent: "center",
+    alignItems: "center",
+    borderWidth: 1,
+    borderColor: "rgba(255, 255, 255, 0.05)",
+  },
+  iconContainerFuture: {
+    width: 38,
+    height: 38,
+    borderRadius: 10,
+    backgroundColor: "rgba(255, 255, 255, 0.01)",
     justifyContent: "center",
     alignItems: "center",
   },
-  iconAge: {
-    backgroundColor: "rgba(139, 92, 246, 0.12)",
-  },
-  iconTime: {
-    backgroundColor: "rgba(34, 211, 238, 0.12)",
-  },
-  iconFuture: {
-    backgroundColor: "rgba(100, 116, 139, 0.08)",
-  },
   statusDotActive: {
-    width: 8,
-    height: 8,
-    borderRadius: 4,
+    width: 6,
+    height: 6,
+    borderRadius: 3,
     backgroundColor: "#10B981",
-    shadowColor: "#10B981",
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 0.8,
-    shadowRadius: 4,
   },
   badgeComingSoon: {
-    backgroundColor: "rgba(100, 116, 139, 0.1)",
-    paddingHorizontal: 8,
-    paddingVertical: 3,
-    borderRadius: 6,
+    backgroundColor: "rgba(255, 255, 255, 0.02)",
+    paddingHorizontal: 6,
+    paddingVertical: 2,
+    borderRadius: 4,
+    borderWidth: 0.5,
+    borderColor: "rgba(255, 255, 255, 0.05)",
   },
   comingSoonText: {
-    fontSize: 9,
+    fontSize: 8,
     fontWeight: "700",
-    color: "#94A3B8",
+    color: "#475569",
     letterSpacing: 0.5,
   },
   cardBody: {
-    marginBottom: 20,
+    marginBottom: 16,
   },
   cardTitle: {
-    fontSize: 22,
-    fontWeight: "800",
+    fontSize: 18,
+    fontWeight: "700",
     color: "#FFFFFF",
-    marginBottom: 8,
+    marginBottom: 6,
   },
   cardTitleFuture: {
-    fontSize: 20,
-    fontWeight: "700",
-    color: "#64748B",
-    marginBottom: 8,
+    fontSize: 17,
+    fontWeight: "600",
+    color: "#475569",
+    marginBottom: 6,
   },
   cardDescription: {
-    fontSize: 14,
+    fontSize: 13,
     color: "#94A3B8",
-    lineHeight: 22,
+    lineHeight: 20,
   },
   cardDescriptionFuture: {
-    fontSize: 13,
+    fontSize: 12,
     color: "#475569",
-    lineHeight: 20,
+    lineHeight: 18,
   },
   cardFooter: {
     flexDirection: "row",
@@ -339,14 +272,9 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
   },
   actionText: {
-    fontSize: 14,
-    fontWeight: "700",
-    marginRight: 6,
-  },
-  infoButtonContainer: {
-    position: "absolute",
-    top: 50,
-    right: 20,
-    zIndex: 10,
+    fontSize: 13,
+    fontWeight: "600",
+    color: "#60A5FA",
+    marginRight: 4,
   },
 });

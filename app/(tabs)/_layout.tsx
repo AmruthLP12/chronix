@@ -41,15 +41,14 @@ export default function TabLayout() {
         },
         headerTintColor: colorScheme === 'dark' ? '#FFFFFF' : '#1E293B',
         headerShadowVisible: false,
-        // Disable the static render of the header on web
-        // to prevent a hydration error in React Navigation v6.
-        headerShown: useClientOnlyValue(false, true),
+        headerShown: true,
       }}
     >
       <Tabs.Screen
         name="index"
         options={{
-          title: "Home",
+          title: "Chronix",
+          tabBarLabel: "Home",
           tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
           headerRight: () => (
             <Link href="/modal" asChild>

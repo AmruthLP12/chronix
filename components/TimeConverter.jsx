@@ -33,7 +33,6 @@ export default function TimeConverter() {
     const ampm = hour >= 12 ? "PM" : "AM";
     const convertedHour = hour % 12 || 12;
     
-    // Ensure two digit minutes
     const paddedMinute = minute.padStart(2, "0");
     setResult12(`${convertedHour}:${paddedMinute} ${ampm}`);
   };
@@ -63,11 +62,8 @@ export default function TimeConverter() {
 
   return (
     <View style={styles.container}>
-      {/* HEADER SECTION */}
+      {/* MINIMAL HEADER */}
       <View style={styles.header}>
-        <View style={styles.iconWrapper}>
-          <FontAwesome name="refresh" size={18} color="#22D3EE" />
-        </View>
         <Text style={styles.title}>Time Converter</Text>
         <Text style={styles.subtitle}>Format-shift temporal layouts in real-time</Text>
       </View>
@@ -109,7 +105,7 @@ export default function TimeConverter() {
           </View>
         </View>
 
-        <TouchableOpacity style={styles.button} onPress={convert24To12} activeOpacity={0.85}>
+        <TouchableOpacity style={styles.button} onPress={convert24To12} activeOpacity={0.8}>
           <Text style={styles.buttonText}>Convert Time</Text>
         </TouchableOpacity>
 
@@ -170,7 +166,6 @@ export default function TimeConverter() {
             activeOpacity={0.9}
           >
             <Text style={[styles.periodText, period === "AM" && styles.activePeriodText]}>AM</Text>
-            {period === "AM" && <View style={styles.activeDot} />}
           </TouchableOpacity>
 
           <TouchableOpacity
@@ -182,11 +177,10 @@ export default function TimeConverter() {
             activeOpacity={0.9}
           >
             <Text style={[styles.periodText, period === "PM" && styles.activePeriodText]}>PM</Text>
-            {period === "PM" && <View style={styles.activeDot} />}
           </TouchableOpacity>
         </View>
 
-        <TouchableOpacity style={styles.button} onPress={convert12To24} activeOpacity={0.85}>
+        <TouchableOpacity style={styles.button} onPress={convert12To24} activeOpacity={0.8}>
           <Text style={styles.buttonText}>Convert Time</Text>
         </TouchableOpacity>
 
@@ -208,171 +202,141 @@ const styles = StyleSheet.create({
   },
   header: {
     alignItems: "center",
-    marginBottom: 24,
-  },
-  iconWrapper: {
-    width: 44,
-    height: 44,
-    borderRadius: 14,
-    backgroundColor: "rgba(34, 211, 238, 0.12)",
-    justifyContent: "center",
-    alignItems: "center",
-    marginBottom: 10,
-    borderWidth: 1,
-    borderColor: "rgba(34, 211, 238, 0.2)",
+    marginBottom: 20,
+    marginTop: 10,
   },
   title: {
-    fontSize: 24,
-    fontWeight: "900",
+    fontSize: 22,
+    fontWeight: "700",
     color: "#FFFFFF",
     letterSpacing: 0.5,
   },
   subtitle: {
     fontSize: 13,
-    color: "#94A3B8",
+    color: "#64748B",
     marginTop: 4,
     textAlign: "center",
   },
   card: {
     backgroundColor: "#161E2E",
     padding: 20,
-    borderRadius: 24,
+    borderRadius: 16,
     borderWidth: 1,
-    borderColor: "rgba(34, 211, 238, 0.15)",
-    marginBottom: 24,
-    shadowColor: "#22D3EE",
-    shadowOffset: { width: 0, height: 6 },
-    shadowOpacity: 0.08,
-    shadowRadius: 16,
-    elevation: 4,
+    borderColor: "rgba(255, 255, 255, 0.06)",
+    marginBottom: 20,
   },
   cardTitleRow: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: 18,
+    marginBottom: 16,
   },
   cardTitle: {
-    fontSize: 18,
-    fontWeight: "800",
+    fontSize: 17,
+    fontWeight: "700",
     color: "#FFFFFF",
   },
   badge: {
-    backgroundColor: "rgba(34, 211, 238, 0.08)",
-    paddingHorizontal: 8,
-    paddingVertical: 3,
-    borderRadius: 6,
+    backgroundColor: "rgba(255, 255, 255, 0.02)",
+    paddingHorizontal: 6,
+    paddingVertical: 2,
+    borderRadius: 4,
     borderWidth: 0.5,
-    borderColor: "rgba(34, 211, 238, 0.2)",
+    borderColor: "rgba(255, 255, 255, 0.06)",
   },
   badgeText: {
     fontSize: 8,
-    fontWeight: "800",
-    color: "#22D3EE",
+    fontWeight: "700",
+    color: "#64748B",
     letterSpacing: 0.5,
   },
   row: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginBottom: 16,
+    marginBottom: 14,
   },
   inputContainer: {
     width: "48%",
   },
   inputLabel: {
-    fontSize: 11,
+    fontSize: 10,
     fontWeight: "700",
-    color: "#64748B",
+    color: "#475569",
     textTransform: "uppercase",
-    letterSpacing: 1,
-    marginBottom: 6,
+    letterSpacing: 0.5,
+    marginBottom: 5,
   },
   input: {
     backgroundColor: "#0B0F19",
     borderWidth: 1,
-    borderColor: "rgba(255, 255, 255, 0.05)",
-    borderRadius: 16,
-    padding: 14,
-    fontSize: 18,
+    borderColor: "rgba(255, 255, 255, 0.04)",
+    borderRadius: 12,
+    padding: 12,
+    fontSize: 16,
     color: "#FFFFFF",
-    fontWeight: "700",
+    fontWeight: "600",
     textAlign: "center",
   },
   periodRow: {
     flexDirection: "row",
-    marginBottom: 20,
+    marginBottom: 16,
   },
   periodButton: {
     flex: 1,
-    paddingVertical: 14,
+    paddingVertical: 12,
     backgroundColor: "#0B0F19",
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: 16,
-    marginHorizontal: 4,
+    borderRadius: 12,
+    marginHorizontal: 3,
     borderWidth: 1,
-    borderColor: "rgba(255, 255, 255, 0.05)",
-    position: "relative",
+    borderColor: "rgba(255, 255, 255, 0.04)",
   },
   activePeriod: {
-    borderColor: "rgba(34, 211, 238, 0.4)",
-    backgroundColor: "rgba(34, 211, 238, 0.05)",
+    borderColor: "rgba(96, 165, 250, 0.3)",
+    backgroundColor: "rgba(96, 165, 250, 0.04)",
   },
   periodText: {
-    fontSize: 15,
-    fontWeight: "700",
-    color: "#64748B",
+    fontSize: 14,
+    fontWeight: "600",
+    color: "#475569",
   },
   activePeriodText: {
-    color: "#22D3EE",
-  },
-  activeDot: {
-    position: "absolute",
-    bottom: 6,
-    width: 4,
-    height: 4,
-    borderRadius: 2,
-    backgroundColor: "#22D3EE",
+    color: "#60A5FA",
   },
   button: {
-    backgroundColor: "#22D3EE",
-    padding: 16,
-    borderRadius: 16,
+    backgroundColor: "#2563EB",
+    padding: 14,
+    borderRadius: 12,
     alignItems: "center",
-    shadowColor: "#22D3EE",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 8,
-    elevation: 4,
   },
   buttonText: {
-    color: "#0B0F19",
-    fontSize: 15,
-    fontWeight: "800",
+    color: "#FFFFFF",
+    fontSize: 14,
+    fontWeight: "700",
     letterSpacing: 0.5,
   },
   resultContainer: {
-    marginTop: 20,
+    marginTop: 16,
     backgroundColor: "#0B0F19",
-    paddingVertical: 16,
-    borderRadius: 16,
+    paddingVertical: 12,
+    borderRadius: 12,
     alignItems: "center",
     borderWidth: 1,
-    borderColor: "rgba(255, 255, 255, 0.05)",
+    borderColor: "rgba(255, 255, 255, 0.04)",
   },
   resultLabel: {
-    fontSize: 10,
+    fontSize: 9,
     fontWeight: "700",
-    color: "#64748B",
+    color: "#475569",
     textTransform: "uppercase",
-    letterSpacing: 1,
-    marginBottom: 4,
+    letterSpacing: 0.5,
+    marginBottom: 2,
   },
   resultValue: {
-    fontSize: 28,
-    fontWeight: "900",
-    color: "#22D3EE",
-    letterSpacing: 0.5,
+    fontSize: 24,
+    fontWeight: "700",
+    color: "#F8FAFC",
   },
   resultError: {
     color: "#EF4444",
