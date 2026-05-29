@@ -1,64 +1,76 @@
 import { FontAwesome } from "@expo/vector-icons";
 import { StatusBar } from "expo-status-bar";
-import { Image, Platform, StyleSheet, Text, View } from "react-native";
+import { Image, Platform, Text, View } from "react-native";
 
 export default function ModalScreen() {
   return (
-    <View style={styles.container}>
+    <View className="flex-1 bg-slate-50 dark:bg-[#0B0F19] items-center px-6 pt-10">
       {/* BRAND SECTION */}
-      <View style={styles.brandContainer}>
-        <View style={styles.logoOuter}>
+      <View className="items-center mb-5">
+        <View className="w-20 h-20 rounded-full overflow-hidden border border-slate-200 dark:border-slate-800/40 mb-3 bg-white dark:bg-[#161E2E] justify-center items-center">
           <Image
             source={require("../assets/images/logo.png")}
-            style={styles.logo}
+            className="w-20 h-20"
             resizeMode="cover"
           />
         </View>
-        <Text style={styles.title}>CHRONIX</Text>
-        <Text style={styles.version}>Version 1.0.0</Text>
+        <Text className="text-2xl font-black text-slate-900 dark:text-white tracking-widest">CHRONIX</Text>
+        <Text className="text-[10px] text-slate-400 dark:text-slate-500 font-bold tracking-wider uppercase mt-1">Version 1.0.0</Text>
       </View>
 
-      <View style={styles.separator} />
+      <View className="my-5 h-[1px] bg-slate-200 dark:bg-slate-800/40 w-full" />
 
       {/* DESCRIPTION */}
-      <Text style={styles.description}>
+      <Text className="text-sm text-slate-505 dark:text-slate-400 text-center leading-5 mb-6">
         A premium, high-tech temporal utility workspace providing modern calculation and format conversion tools with extreme precision.
       </Text>
 
       {/* MODULE DIRECTORY */}
-      <View style={styles.featuresContainer}>
-        <Text style={styles.sectionHeader}>Available Modules</Text>
-        
-        <View style={styles.featureItem}>
-          <FontAwesome name="check-circle" size={16} color="#10B981" style={styles.featureIcon} />
-          <View>
-            <Text style={styles.featureName}>Age Calculator</Text>
-            <Text style={styles.featureDetail}>Compute intervals, years, months, and total elapsed days.</Text>
+      <View className="w-full bg-white dark:bg-[#161E2E] rounded-2xl p-5 border border-slate-200 dark:border-slate-800/40 shadow-sm dark:shadow-none">
+        <Text className="text-[10px] font-extrabold text-slate-400 dark:text-slate-500 tracking-wider uppercase mb-3.5">
+          Available Modules
+        </Text>
+
+        <View className="flex-row items-start mb-3.5">
+          <FontAwesome name="check-circle" size={16} className="text-emerald-500 mr-3 mt-0.5" />
+          <View className="flex-1">
+            <Text className="text-sm font-bold text-slate-850 dark:text-white">Age Calculator</Text>
+            <Text className="text-xs text-slate-500 dark:text-slate-400 mt-0.5 leading-4 pr-4">
+              Compute intervals, years, months, and total elapsed days.
+            </Text>
           </View>
         </View>
 
-        <View style={styles.featureItem}>
-          <FontAwesome name="check-circle" size={16} color="#10B981" style={styles.featureIcon} />
-          <View>
-            <Text style={styles.featureName}>Time Converter</Text>
-            <Text style={styles.featureDetail}>Seamless translation between 24-hour military and 12-hour clocks.</Text>
+        <View className="flex-row items-start mb-3.5">
+          <FontAwesome name="check-circle" size={16} className="text-emerald-500 mr-3 mt-0.5" />
+          <View className="flex-1">
+            <Text className="text-sm font-bold text-slate-850 dark:text-white">Time Converter</Text>
+            <Text className="text-xs text-slate-500 dark:text-slate-400 mt-0.5 leading-4 pr-4">
+              Seamless translation between 24-hour military and 12-hour clocks.
+            </Text>
           </View>
         </View>
 
-        <Text style={[styles.sectionHeader, { marginTop: 15 }]}>Active Pipeline</Text>
+        <Text className="text-[10px] font-extrabold text-slate-400 dark:text-slate-500 tracking-wider uppercase mb-3.5 mt-3">
+          Active Pipeline
+        </Text>
 
-        <View style={styles.featureItem}>
-          <FontAwesome name="lock" size={16} color="#64748B" style={styles.featureIcon} />
-          <View>
-            <Text style={styles.featureNameDisabled}>Timezone Sync (Soon)</Text>
-            <Text style={styles.featureDetailDisabled}>Multi-locale timezone calculations and tracking.</Text>
+        <View className="flex-row items-start mb-1">
+          <FontAwesome name="lock" size={16} className="text-slate-400 dark:text-slate-600 mr-3 mt-0.5" />
+          <View className="flex-1">
+            <Text className="text-sm font-bold text-slate-400 dark:text-slate-600">Timezone Sync (Soon)</Text>
+            <Text className="text-xs text-slate-400 dark:text-slate-700 mt-0.5 leading-4 pr-4">
+              Multi-locale timezone calculations and tracking.
+            </Text>
           </View>
         </View>
       </View>
 
       {/* CREDITS */}
-      <View style={styles.footer}>
-        <Text style={styles.credits}>Created by AmruthLP12</Text>
+      <View className="absolute bottom-8">
+        <Text className="text-[9px] font-bold text-slate-450 dark:text-slate-600 tracking-widest uppercase">
+          Created by AmruthLP12
+        </Text>
       </View>
 
       {/* Use a light status bar on iOS to account for the black space above the modal */}
@@ -66,118 +78,3 @@ export default function ModalScreen() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#0B0F19",
-    alignItems: "center",
-    paddingHorizontal: 24,
-    paddingTop: 40,
-  },
-  brandContainer: {
-    alignItems: "center",
-    marginBottom: 20,
-  },
-  logoOuter: {
-    width: 80,
-    height: 80,
-    borderRadius: 40,
-    overflow: "hidden",
-    borderWidth: 1,
-    borderColor: "rgba(255, 255, 255, 0.08)",
-    marginBottom: 12,
-    backgroundColor: "#161E2E",
-  },
-  logo: {
-    width: 80,
-    height: 80,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: "900",
-    color: "#FFFFFF",
-    letterSpacing: 3,
-  },
-  version: {
-    fontSize: 12,
-    color: "#94A3B8",
-    fontWeight: "600",
-    textTransform: "uppercase",
-    letterSpacing: 1.5,
-    marginTop: 4,
-  },
-  separator: {
-    marginVertical: 20,
-    height: 1,
-    backgroundColor: "rgba(255, 255, 255, 0.08)",
-    width: "100%",
-  },
-  description: {
-    fontSize: 14,
-    color: "#94A3B8",
-    textAlign: "center",
-    lineHeight: 22,
-    marginBottom: 24,
-  },
-  featuresContainer: {
-    width: "100%",
-    backgroundColor: "#161E2E",
-    borderRadius: 20,
-    padding: 20,
-    borderWidth: 1,
-    borderColor: "rgba(255, 255, 255, 0.05)",
-  },
-  sectionHeader: {
-    fontSize: 11,
-    fontWeight: "800",
-    color: "#64748B",
-    textTransform: "uppercase",
-    letterSpacing: 1.5,
-    marginBottom: 14,
-  },
-  featureItem: {
-    flexDirection: "row",
-    alignItems: "flex-start",
-    marginBottom: 14,
-  },
-  featureIcon: {
-    marginRight: 12,
-    marginTop: 2,
-  },
-  featureName: {
-    fontSize: 14,
-    fontWeight: "700",
-    color: "#FFFFFF",
-  },
-  featureNameDisabled: {
-    fontSize: 14,
-    fontWeight: "700",
-    color: "#64748B",
-  },
-  featureDetail: {
-    fontSize: 12,
-    color: "#94A3B8",
-    marginTop: 2,
-    lineHeight: 16,
-    paddingRight: 16,
-  },
-  featureDetailDisabled: {
-    fontSize: 12,
-    color: "#475569",
-    marginTop: 2,
-    lineHeight: 16,
-    paddingRight: 16,
-  },
-  footer: {
-    position: "absolute",
-    bottom: 30,
-  },
-  credits: {
-    fontSize: 11,
-    fontWeight: "700",
-    color: "#475569",
-    textTransform: "uppercase",
-    letterSpacing: 1.5,
-  },
-});

@@ -1,7 +1,7 @@
 import { FontAwesome } from "@expo/vector-icons";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { useState } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 
 export default function AgeCalculator() {
   const [fromDate, setFromDate] = useState(new Date(2000, 0, 1));
@@ -33,45 +33,63 @@ export default function AgeCalculator() {
   const age = calculateAge();
 
   return (
-    <View style={styles.container}>
+    <View className="px-5 pb-5">
       {/* MINIMAL HEADER */}
-      <View style={styles.header}>
-        <Text style={styles.title}>Age Calculator</Text>
-        <Text style={styles.subtitle}>Calculate precise intervals between dates</Text>
+      <View className="items-center mb-5 mt-2">
+        <Text className="text-xl font-bold text-slate-900 dark:text-white tracking-wide">
+          Age Calculator
+        </Text>
+        <Text className="text-xs text-slate-505 dark:text-slate-400 mt-1 text-center">
+          Calculate precise intervals between dates
+        </Text>
       </View>
 
       {/* DATE SELECTORS CONTAINER */}
-      <View style={styles.card}>
-        <Text style={styles.cardSectionLabel}>Select Dates</Text>
+      <View className="bg-white dark:bg-[#161E2E] p-5 rounded-2xl border border-slate-200 dark:border-slate-800/40 mb-5 shadow-sm dark:shadow-none">
+        <Text className="text-[10px] font-bold text-slate-400 dark:text-slate-500 tracking-wider uppercase mb-3.5">
+          Select Dates
+        </Text>
 
         <TouchableOpacity
-          style={[styles.dateBtn, showFrom && styles.dateBtnActive]}
+          className={`bg-slate-50 dark:bg-[#0B0F19] flex-row items-center justify-between p-3.5 rounded-xl mb-3 border ${
+            showFrom ? "border-blue-400 dark:border-blue-900/50" : "border-slate-200/50 dark:border-slate-800/30"
+          }`}
           onPress={() => setShowFrom(true)}
           activeOpacity={0.8}
         >
-          <View style={styles.dateBtnLeft}>
-            <FontAwesome name="calendar" size={14} color="#60A5FA" style={styles.btnIcon} />
+          <View className="flex-row items-center">
+            <FontAwesome name="calendar" size={14} className="text-blue-500 dark:text-blue-400 mr-3" />
             <View>
-              <Text style={styles.btnLabel}>Start Date</Text>
-              <Text style={styles.btnValue}>{fromDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</Text>
+              <Text className="text-[9px] text-slate-400 dark:text-slate-500 font-bold uppercase">
+                Start Date
+              </Text>
+              <Text className="text-sm text-slate-800 dark:text-slate-200 font-semibold mt-0.5">
+                {fromDate.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
+              </Text>
             </View>
           </View>
-          <FontAwesome name="chevron-down" size={10} color="#475569" />
+          <FontAwesome name="chevron-down" size={10} className="text-slate-400 dark:text-slate-650" />
         </TouchableOpacity>
 
         <TouchableOpacity
-          style={[styles.dateBtn, showTo && styles.dateBtnActive]}
+          className={`bg-slate-50 dark:bg-[#0B0F19] flex-row items-center justify-between p-3.5 rounded-xl mb-1 border ${
+            showTo ? "border-blue-400 dark:border-blue-900/50" : "border-slate-200/50 dark:border-slate-800/30"
+          }`}
           onPress={() => setShowTo(true)}
           activeOpacity={0.8}
         >
-          <View style={styles.dateBtnLeft}>
-            <FontAwesome name="calendar-check-o" size={14} color="#60A5FA" style={styles.btnIcon} />
+          <View className="flex-row items-center">
+            <FontAwesome name="calendar-check-o" size={14} className="text-blue-500 dark:text-blue-400 mr-3" />
             <View>
-              <Text style={styles.btnLabel}>End Date</Text>
-              <Text style={styles.btnValue}>{toDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</Text>
+              <Text className="text-[9px] text-slate-400 dark:text-slate-500 font-bold uppercase">
+                End Date
+              </Text>
+              <Text className="text-sm text-slate-800 dark:text-slate-200 font-semibold mt-0.5">
+                {toDate.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
+              </Text>
             </View>
           </View>
-          <FontAwesome name="chevron-down" size={10} color="#475569" />
+          <FontAwesome name="chevron-down" size={10} className="text-slate-400 dark:text-slate-650" />
         </TouchableOpacity>
 
         {showFrom && (
@@ -100,175 +118,43 @@ export default function AgeCalculator() {
       </View>
 
       {/* METRIC DASHBOARD RESULTS */}
-      <Text style={styles.resultsHeaderLabel}>Telemetry Results</Text>
+      <Text className="text-[10px] font-bold text-slate-400 dark:text-slate-500 tracking-wider uppercase mb-2.5 pl-0.5">
+        Telemetry Results
+      </Text>
 
-      <View style={styles.metricsGrid}>
+      <View className="flex-row justify-between mb-4">
         {/* YEARS */}
-        <View style={styles.metricCard}>
-          <Text style={styles.metricNumber}>{age.years}</Text>
-          <Text style={styles.metricLabel}>Years</Text>
+        <View className="w-[31%] bg-white dark:bg-[#161E2E] rounded-xl py-3.5 items-center border border-slate-200 dark:border-slate-850 shadow-sm dark:shadow-none">
+          <Text className="text-2xl font-bold text-slate-800 dark:text-white">{age.years}</Text>
+          <Text className="text-[9px] font-semibold text-slate-400 dark:text-slate-505 mt-0.5 uppercase">Years</Text>
         </View>
 
         {/* MONTHS */}
-        <View style={styles.metricCard}>
-          <Text style={styles.metricNumber}>{age.months}</Text>
-          <Text style={styles.metricLabel}>Months</Text>
+        <View className="w-[31%] bg-white dark:bg-[#161E2E] rounded-xl py-3.5 items-center border border-slate-200 dark:border-slate-850 shadow-sm dark:shadow-none">
+          <Text className="text-2xl font-bold text-slate-800 dark:text-white">{age.months}</Text>
+          <Text className="text-[9px] font-semibold text-slate-400 dark:text-slate-505 mt-0.5 uppercase">Months</Text>
         </View>
 
         {/* DAYS */}
-        <View style={styles.metricCard}>
-          <Text style={styles.metricNumber}>{age.days}</Text>
-          <Text style={styles.metricLabel}>Days</Text>
+        <View className="w-[31%] bg-white dark:bg-[#161E2E] rounded-xl py-3.5 items-center border border-slate-200 dark:border-slate-850 shadow-sm dark:shadow-none">
+          <Text className="text-2xl font-bold text-slate-800 dark:text-white">{age.days}</Text>
+          <Text className="text-[9px] font-semibold text-slate-400 dark:text-slate-505 mt-0.5 uppercase">Days</Text>
         </View>
       </View>
 
       {/* TOTAL DAYS */}
-      <View style={styles.totalDaysCard}>
-        <View style={styles.totalDaysHeader}>
-          <FontAwesome name="clock-o" size={14} color="#94A3B8" />
-          <Text style={styles.totalDaysLabel}>Total Elapsed Duration</Text>
+      <View className="bg-white dark:bg-[#161E2E] border border-slate-200 dark:border-slate-850 rounded-xl p-4 shadow-sm dark:shadow-none">
+        <View className="flex-row items-center mb-1">
+          <FontAwesome name="clock-o" size={12} className="text-slate-400 dark:text-slate-500" />
+          <Text className="text-[9px] font-bold text-slate-400 dark:text-slate-500 uppercase ml-1.5">
+            Total Elapsed Duration
+          </Text>
         </View>
-        <Text style={styles.totalDaysNumber}>
-          {age.totalDays.toLocaleString()} <Text style={styles.totalDaysSuffix}>Days total</Text>
+        <Text className="text-xl font-bold text-slate-800 dark:text-white">
+          {age.totalDays.toLocaleString()}{" "}
+          <Text className="text-xs font-semibold text-slate-400 dark:text-slate-500">Days total</Text>
         </Text>
       </View>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    paddingHorizontal: 20,
-    backgroundColor: "#0B0F19",
-  },
-  header: {
-    alignItems: "center",
-    marginBottom: 20,
-    marginTop: 10,
-  },
-  title: {
-    fontSize: 22,
-    fontWeight: "700",
-    color: "#FFFFFF",
-    letterSpacing: 0.5,
-  },
-  subtitle: {
-    fontSize: 13,
-    color: "#64748B",
-    marginTop: 4,
-    textAlign: "center",
-  },
-  card: {
-    backgroundColor: "#161E2E",
-    padding: 20,
-    borderRadius: 16,
-    borderWidth: 1,
-    borderColor: "rgba(255, 255, 255, 0.06)",
-    marginBottom: 20,
-  },
-  cardSectionLabel: {
-    fontSize: 11,
-    fontWeight: "700",
-    color: "#475569",
-    textTransform: "uppercase",
-    letterSpacing: 1,
-    marginBottom: 14,
-  },
-  dateBtn: {
-    backgroundColor: "#0B0F19",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    padding: 14,
-    borderRadius: 12,
-    marginBottom: 12,
-    borderWidth: 1,
-    borderColor: "rgba(255, 255, 255, 0.04)",
-  },
-  dateBtnActive: {
-    borderColor: "rgba(96, 165, 250, 0.25)",
-  },
-  dateBtnLeft: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  btnIcon: {
-    marginRight: 12,
-  },
-  btnLabel: {
-    fontSize: 10,
-    color: "#475569",
-    fontWeight: "600",
-    textTransform: "uppercase",
-  },
-  btnValue: {
-    fontSize: 14,
-    color: "#F8FAFC",
-    fontWeight: "600",
-    marginTop: 1,
-  },
-  resultsHeaderLabel: {
-    fontSize: 11,
-    fontWeight: "700",
-    color: "#475569",
-    textTransform: "uppercase",
-    letterSpacing: 1,
-    marginBottom: 10,
-    paddingLeft: 2,
-  },
-  metricsGrid: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginBottom: 16,
-  },
-  metricCard: {
-    width: "31%",
-    backgroundColor: "#161E2E",
-    borderRadius: 14,
-    paddingVertical: 14,
-    alignItems: "center",
-    borderWidth: 1,
-    borderColor: "rgba(255, 255, 255, 0.05)",
-  },
-  metricNumber: {
-    fontSize: 26,
-    fontWeight: "700",
-    color: "#FFFFFF",
-  },
-  metricLabel: {
-    fontSize: 10,
-    fontWeight: "600",
-    color: "#64748B",
-    marginTop: 2,
-    textTransform: "uppercase",
-  },
-  totalDaysCard: {
-    backgroundColor: "#161E2E",
-    borderWidth: 1,
-    borderColor: "rgba(255, 255, 255, 0.05)",
-    borderRadius: 14,
-    padding: 16,
-  },
-  totalDaysHeader: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginBottom: 4,
-  },
-  totalDaysLabel: {
-    fontSize: 10,
-    fontWeight: "700",
-    color: "#64748B",
-    textTransform: "uppercase",
-    marginLeft: 6,
-  },
-  totalDaysNumber: {
-    fontSize: 22,
-    fontWeight: "700",
-    color: "#FFFFFF",
-  },
-  totalDaysSuffix: {
-    fontSize: 14,
-    fontWeight: "500",
-    color: "#475569",
-  },
-});

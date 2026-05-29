@@ -1,12 +1,5 @@
-import { FontAwesome } from "@expo/vector-icons";
 import { useState } from "react";
-import {
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Text, TextInput, TouchableOpacity, View } from "react-native";
 
 export default function TimeConverter() {
   // 24 -> 12
@@ -32,7 +25,7 @@ export default function TimeConverter() {
 
     const ampm = hour >= 12 ? "PM" : "AM";
     const convertedHour = hour % 12 || 12;
-    
+
     const paddedMinute = minute.padStart(2, "0");
     setResult12(`${convertedHour}:${paddedMinute} ${ampm}`);
   };
@@ -61,284 +54,164 @@ export default function TimeConverter() {
   };
 
   return (
-    <View style={styles.container}>
+    <View className="px-5 pb-5">
       {/* MINIMAL HEADER */}
-      <View style={styles.header}>
-        <Text style={styles.title}>Time Converter</Text>
-        <Text style={styles.subtitle}>Format-shift temporal layouts in real-time</Text>
+      <View className="items-center mb-5 mt-2">
+        <Text className="text-xl font-bold text-slate-900 dark:text-white tracking-wide">
+          Time Converter
+        </Text>
+        <Text className="text-xs text-slate-505 dark:text-slate-400 mt-1 text-center">
+          Format-shift temporal layouts in real-time
+        </Text>
       </View>
 
       {/* 24 TO 12 CARD */}
-      <View style={styles.card}>
-        <View style={styles.cardTitleRow}>
-          <Text style={styles.cardTitle}>24 → 12 Hour</Text>
-          <View style={styles.badge}>
-            <Text style={styles.badgeText}>MILITARY TO STANDARD</Text>
+      <View className="bg-white dark:bg-[#161E2E] p-5 rounded-2xl border border-slate-200 dark:border-slate-800/40 mb-5 shadow-sm dark:shadow-none">
+        <View className="flex-row justify-between items-center mb-4">
+          <Text className="text-base font-bold text-slate-900 dark:text-white">24 → 12 Hour</Text>
+          <View className="bg-slate-100 dark:bg-slate-800/40 px-1.5 py-0.5 rounded border border-slate-200 dark:border-slate-700/30">
+            <Text className="text-[8px] font-bold text-slate-400 dark:text-slate-500 tracking-wider">
+              MILITARY TO STANDARD
+            </Text>
           </View>
         </View>
 
-        <View style={styles.row}>
-          <View style={styles.inputContainer}>
-            <Text style={styles.inputLabel}>Hours (0-23)</Text>
+        <View className="flex-row justify-between mb-4">
+          <View className="w-[48%]">
+            <Text className="text-[9px] font-bold text-slate-400 dark:text-slate-505 tracking-wider uppercase mb-1.5">
+              Hours (0-23)
+            </Text>
             <TextInput
               placeholder="00"
-              placeholderTextColor="#475569"
+              placeholderTextColor="#94A3B8"
               keyboardType="numeric"
               value={hour24}
               onChangeText={setHour24}
               maxLength={2}
-              style={styles.input}
+              className="bg-slate-50 dark:bg-[#0B0F19] border border-slate-200/50 dark:border-slate-800/30 rounded-xl p-3 text-base text-slate-800 dark:text-white font-semibold text-center"
             />
           </View>
 
-          <View style={styles.inputContainer}>
-            <Text style={styles.inputLabel}>Minutes (0-59)</Text>
+          <View className="w-[48%]">
+            <Text className="text-[9px] font-bold text-slate-400 dark:text-slate-505 tracking-wider uppercase mb-1.5">
+              Minutes (0-59)
+            </Text>
             <TextInput
               placeholder="00"
-              placeholderTextColor="#475569"
+              placeholderTextColor="#94A3B8"
               keyboardType="numeric"
               value={minute24}
               onChangeText={setMinute24}
               maxLength={2}
-              style={styles.input}
+              className="bg-slate-50 dark:bg-[#0B0F19] border border-slate-200/50 dark:border-slate-800/30 rounded-xl p-3 text-base text-slate-800 dark:text-white font-semibold text-center"
             />
           </View>
         </View>
 
-        <TouchableOpacity style={styles.button} onPress={convert24To12} activeOpacity={0.8}>
-          <Text style={styles.buttonText}>Convert Time</Text>
+        <TouchableOpacity className="bg-blue-600 dark:bg-blue-500 py-3.5 rounded-xl items-center" onPress={convert24To12} activeOpacity={0.8}>
+          <Text className="text-white text-sm font-bold tracking-wide">Convert Time</Text>
         </TouchableOpacity>
 
         {result12 ? (
-          <View style={styles.resultContainer}>
-            <Text style={styles.resultLabel}>Standard Result</Text>
-            <Text style={[styles.resultValue, result12.includes("Invalid") && styles.resultError]}>{result12}</Text>
+          <View className="mt-4 bg-slate-50 dark:bg-[#0B0F19] py-3 rounded-xl items-center border border-slate-200/50 dark:border-slate-800/30">
+            <Text className="text-[8px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-0.5">
+              Standard Result
+            </Text>
+            <Text className={`text-xl font-bold ${result12.includes("Invalid") ? "text-rose-500" : "text-slate-800 dark:text-white"}`}>
+              {result12}
+            </Text>
           </View>
         ) : null}
       </View>
 
       {/* 12 TO 24 CARD */}
-      <View style={styles.card}>
-        <View style={styles.cardTitleRow}>
-          <Text style={styles.cardTitle}>12 → 24 Hour</Text>
-          <View style={styles.badge}>
-            <Text style={styles.badgeText}>STANDARD TO MILITARY</Text>
+      <View className="bg-white dark:bg-[#161E2E] p-5 rounded-2xl border border-slate-200 dark:border-slate-800/40 mb-5 shadow-sm dark:shadow-none">
+        <View className="flex-row justify-between items-center mb-4">
+          <Text className="text-base font-bold text-slate-900 dark:text-white">12 → 24 Hour</Text>
+          <View className="bg-slate-100 dark:bg-slate-800/40 px-1.5 py-0.5 rounded border border-slate-200 dark:border-slate-700/30">
+            <Text className="text-[8px] font-bold text-slate-400 dark:text-slate-500 tracking-wider">
+              STANDARD TO MILITARY
+            </Text>
           </View>
         </View>
 
-        <View style={styles.row}>
-          <View style={styles.inputContainer}>
-            <Text style={styles.inputLabel}>Hours (1-12)</Text>
+        <View className="flex-row justify-between mb-4">
+          <View className="w-[48%]">
+            <Text className="text-[9px] font-bold text-slate-400 dark:text-slate-505 tracking-wider uppercase mb-1.5">
+              Hours (1-12)
+            </Text>
             <TextInput
               placeholder="12"
-              placeholderTextColor="#475569"
+              placeholderTextColor="#94A3B8"
               keyboardType="numeric"
               value={hour12}
               onChangeText={setHour12}
               maxLength={2}
-              style={styles.input}
+              className="bg-slate-50 dark:bg-[#0B0F19] border border-slate-200/50 dark:border-slate-800/30 rounded-xl p-3 text-base text-slate-800 dark:text-white font-semibold text-center"
             />
           </View>
 
-          <View style={styles.inputContainer}>
-            <Text style={styles.inputLabel}>Minutes (0-59)</Text>
+          <View className="w-[48%]">
+            <Text className="text-[9px] font-bold text-slate-400 dark:text-slate-505 tracking-wider uppercase mb-1.5">
+              Minutes (0-59)
+            </Text>
             <TextInput
               placeholder="00"
-              placeholderTextColor="#475569"
+              placeholderTextColor="#94A3B8"
               keyboardType="numeric"
               value={minute12}
               onChangeText={setMinute12}
               maxLength={2}
-              style={styles.input}
+              className="bg-slate-50 dark:bg-[#0B0F19] border border-slate-200/50 dark:border-slate-800/30 rounded-xl p-3 text-base text-slate-800 dark:text-white font-semibold text-center"
             />
           </View>
         </View>
 
         {/* AM PM SWITCHER */}
-        <Text style={styles.inputLabel}>Select Period</Text>
-        <View style={styles.periodRow}>
+        <Text className="text-[9px] font-bold text-slate-400 dark:text-slate-505 tracking-wider uppercase mb-1.5">
+          Select Period
+        </Text>
+        <View className="flex-row mb-4">
           <TouchableOpacity
-            style={[
-              styles.periodButton,
-              period === "AM" && styles.activePeriod,
-            ]}
+            className={`flex-1 py-3 bg-slate-50 dark:bg-[#0B0F19] items-center justify-center rounded-xl mx-0.5 border ${
+              period === "AM" ? "border-blue-400 dark:border-blue-900/50 bg-blue-50/50 dark:bg-blue-950/20" : "border-slate-200/50 dark:border-slate-800/30"
+            }`}
             onPress={() => setPeriod("AM")}
             activeOpacity={0.9}
           >
-            <Text style={[styles.periodText, period === "AM" && styles.activePeriodText]}>AM</Text>
+            <Text className={`text-sm font-semibold ${period === "AM" ? "text-blue-600 dark:text-blue-400" : "text-slate-450 dark:text-slate-500"}`}>
+              AM
+            </Text>
           </TouchableOpacity>
 
           <TouchableOpacity
-            style={[
-              styles.periodButton,
-              period === "PM" && styles.activePeriod,
-            ]}
+            className={`flex-1 py-3 bg-slate-50 dark:bg-[#0B0F19] items-center justify-center rounded-xl mx-0.5 border ${
+              period === "PM" ? "border-blue-400 dark:border-blue-900/50 bg-blue-50/50 dark:bg-blue-950/20" : "border-slate-200/50 dark:border-slate-800/30"
+            }`}
             onPress={() => setPeriod("PM")}
             activeOpacity={0.9}
           >
-            <Text style={[styles.periodText, period === "PM" && styles.activePeriodText]}>PM</Text>
+            <Text className={`text-sm font-semibold ${period === "PM" ? "text-blue-600 dark:text-blue-400" : "text-slate-450 dark:text-slate-500"}`}>
+              PM
+            </Text>
           </TouchableOpacity>
         </View>
 
-        <TouchableOpacity style={styles.button} onPress={convert12To24} activeOpacity={0.8}>
-          <Text style={styles.buttonText}>Convert Time</Text>
+        <TouchableOpacity className="bg-blue-600 dark:bg-blue-500 py-3.5 rounded-xl items-center" onPress={convert12To24} activeOpacity={0.8}>
+          <Text className="text-white text-sm font-bold tracking-wide">Convert Time</Text>
         </TouchableOpacity>
 
         {result24 ? (
-          <View style={styles.resultContainer}>
-            <Text style={styles.resultLabel}>Military Result</Text>
-            <Text style={[styles.resultValue, result24.includes("Invalid") && styles.resultError]}>{result24}</Text>
+          <View className="mt-4 bg-slate-50 dark:bg-[#0B0F19] py-3 rounded-xl items-center border border-slate-200/50 dark:border-slate-800/30">
+            <Text className="text-[8px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-0.5">
+              Military Result
+            </Text>
+            <Text className={`text-xl font-bold ${result24.includes("Invalid") ? "text-rose-500" : "text-slate-800 dark:text-white"}`}>
+              {result24}
+            </Text>
           </View>
         ) : null}
       </View>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    paddingHorizontal: 20,
-    backgroundColor: "#0B0F19",
-  },
-  header: {
-    alignItems: "center",
-    marginBottom: 20,
-    marginTop: 10,
-  },
-  title: {
-    fontSize: 22,
-    fontWeight: "700",
-    color: "#FFFFFF",
-    letterSpacing: 0.5,
-  },
-  subtitle: {
-    fontSize: 13,
-    color: "#64748B",
-    marginTop: 4,
-    textAlign: "center",
-  },
-  card: {
-    backgroundColor: "#161E2E",
-    padding: 20,
-    borderRadius: 16,
-    borderWidth: 1,
-    borderColor: "rgba(255, 255, 255, 0.06)",
-    marginBottom: 20,
-  },
-  cardTitleRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginBottom: 16,
-  },
-  cardTitle: {
-    fontSize: 17,
-    fontWeight: "700",
-    color: "#FFFFFF",
-  },
-  badge: {
-    backgroundColor: "rgba(255, 255, 255, 0.02)",
-    paddingHorizontal: 6,
-    paddingVertical: 2,
-    borderRadius: 4,
-    borderWidth: 0.5,
-    borderColor: "rgba(255, 255, 255, 0.06)",
-  },
-  badgeText: {
-    fontSize: 8,
-    fontWeight: "700",
-    color: "#64748B",
-    letterSpacing: 0.5,
-  },
-  row: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginBottom: 14,
-  },
-  inputContainer: {
-    width: "48%",
-  },
-  inputLabel: {
-    fontSize: 10,
-    fontWeight: "700",
-    color: "#475569",
-    textTransform: "uppercase",
-    letterSpacing: 0.5,
-    marginBottom: 5,
-  },
-  input: {
-    backgroundColor: "#0B0F19",
-    borderWidth: 1,
-    borderColor: "rgba(255, 255, 255, 0.04)",
-    borderRadius: 12,
-    padding: 12,
-    fontSize: 16,
-    color: "#FFFFFF",
-    fontWeight: "600",
-    textAlign: "center",
-  },
-  periodRow: {
-    flexDirection: "row",
-    marginBottom: 16,
-  },
-  periodButton: {
-    flex: 1,
-    paddingVertical: 12,
-    backgroundColor: "#0B0F19",
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 12,
-    marginHorizontal: 3,
-    borderWidth: 1,
-    borderColor: "rgba(255, 255, 255, 0.04)",
-  },
-  activePeriod: {
-    borderColor: "rgba(96, 165, 250, 0.3)",
-    backgroundColor: "rgba(96, 165, 250, 0.04)",
-  },
-  periodText: {
-    fontSize: 14,
-    fontWeight: "600",
-    color: "#475569",
-  },
-  activePeriodText: {
-    color: "#60A5FA",
-  },
-  button: {
-    backgroundColor: "#2563EB",
-    padding: 14,
-    borderRadius: 12,
-    alignItems: "center",
-  },
-  buttonText: {
-    color: "#FFFFFF",
-    fontSize: 14,
-    fontWeight: "700",
-    letterSpacing: 0.5,
-  },
-  resultContainer: {
-    marginTop: 16,
-    backgroundColor: "#0B0F19",
-    paddingVertical: 12,
-    borderRadius: 12,
-    alignItems: "center",
-    borderWidth: 1,
-    borderColor: "rgba(255, 255, 255, 0.04)",
-  },
-  resultLabel: {
-    fontSize: 9,
-    fontWeight: "700",
-    color: "#475569",
-    textTransform: "uppercase",
-    letterSpacing: 0.5,
-    marginBottom: 2,
-  },
-  resultValue: {
-    fontSize: 24,
-    fontWeight: "700",
-    color: "#F8FAFC",
-  },
-  resultError: {
-    color: "#EF4444",
-  },
-});

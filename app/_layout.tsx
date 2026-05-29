@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import "react-native-reanimated";
 
 import { useColorScheme } from "@/components/useColorScheme";
+import { useColorScheme as useNativeWindColorScheme } from "nativewind";
 
 import "../styles/global.css";
 
@@ -53,6 +54,13 @@ export default function RootLayout() {
 
 function RootLayoutNav() {
   const colorScheme = useColorScheme();
+  const { setColorScheme } = useNativeWindColorScheme();
+
+  useEffect(() => {
+    if (colorScheme) {
+      setColorScheme(colorScheme);
+    }
+  }, [colorScheme]);
 
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>

@@ -1,27 +1,15 @@
 import React from "react";
-import { ScrollView, StyleSheet } from "react-native";
+import { ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import TimeConverter from "../components/TimeConverter";
 
 export default function TimeScreen() {
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView
-        contentContainerStyle={{
-          paddingBottom: 40,
-        }}
-      >
+    <SafeAreaView className="flex-1 bg-slate-50 dark:bg-[#0B0F19] pt-5">
+      <ScrollView contentContainerStyle={{ paddingBottom: 40 }} showsVerticalScrollIndicator={false}>
         <TimeConverter />
       </ScrollView>
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#0B0F19",
-    paddingTop: 20,
-  },
-});
