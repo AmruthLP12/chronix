@@ -84,6 +84,7 @@ function RootLayoutNav() {
         />
         <Stack.Screen name="age" options={{ headerShown: false }} />
         <Stack.Screen name="time" options={{ headerShown: false }} />
+        <Stack.Screen name="service" options={{ headerShown: false }} />
       </Stack>
     </ThemeProvider>
   );
