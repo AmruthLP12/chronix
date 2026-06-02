@@ -21,7 +21,7 @@ export default function ServiceCalculator() {
       const previousMonthDays = new Date(
         toDate.getFullYear(),
         toDate.getMonth(),
-        0
+        0,
       ).getDate();
       days += previousMonthDays;
     }
@@ -40,8 +40,25 @@ export default function ServiceCalculator() {
 
   const today = new Date();
 
-  const overallService = calculateDifference(joiningDate, today);
-  const remainingService = calculateDifference(today, retirementDate);
+  const [overallService, setOverallService] = useState<{
+    years: number;
+    months: number;
+    days: number;
+  } | null>(null);
+
+  const [remainingService, setRemainingService] = useState<{
+    years: number;
+    months: number;
+    days: number;
+  } | null>(null);
+
+  const handleCalculate = () => {
+    const today = new Date();
+
+    setOverallService(calculateDifference(joiningDate, today));
+
+    setRemainingService(calculateDifference(today, retirementDate));
+  };
 
   return (
     <View className="px-5 pb-5">
@@ -64,45 +81,73 @@ export default function ServiceCalculator() {
         {/* DATE OF JOINING */}
         <TouchableOpacity
           className={`bg-slate-50 dark:bg-[#0B0F19] flex-row items-center justify-between p-3.5 rounded-xl mb-3 border ${
-            showJoiningPicker ? "border-blue-400 dark:border-blue-900/50" : "border-slate-200/50 dark:border-slate-800/30"
+            showJoiningPicker
+              ? "border-blue-400 dark:border-blue-900/50"
+              : "border-slate-200/50 dark:border-slate-800/30"
           }`}
           onPress={() => setShowJoiningPicker(true)}
           activeOpacity={0.8}
         >
           <View className="flex-row items-center">
-            <FontAwesome name="calendar" size={14} className="text-blue-500 dark:text-blue-400 mr-3" />
+            <FontAwesome
+              name="calendar"
+              size={14}
+              className="text-blue-500 dark:text-blue-400 mr-3"
+            />
             <View>
               <Text className="text-[9px] text-slate-400 dark:text-slate-500 font-bold uppercase">
                 Date of Joining
               </Text>
               <Text className="text-sm text-slate-800 dark:text-slate-200 font-semibold mt-0.5">
-                {joiningDate.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
+                {joiningDate.toLocaleDateString("en-US", {
+                  month: "short",
+                  day: "numeric",
+                  year: "numeric",
+                })}
               </Text>
             </View>
           </View>
-          <FontAwesome name="chevron-down" size={10} className="text-slate-400 dark:text-slate-650" />
+          <FontAwesome
+            name="chevron-down"
+            size={10}
+            className="text-slate-400 dark:text-slate-650"
+          />
         </TouchableOpacity>
 
         {/* RETIREMENT DATE */}
         <TouchableOpacity
           className={`bg-slate-50 dark:bg-[#0B0F19] flex-row items-center justify-between p-3.5 rounded-xl mb-1 border ${
-            showRetirementPicker ? "border-blue-400 dark:border-blue-900/50" : "border-slate-200/50 dark:border-slate-800/30"
+            showRetirementPicker
+              ? "border-blue-400 dark:border-blue-900/50"
+              : "border-slate-200/50 dark:border-slate-800/30"
           }`}
           onPress={() => setShowRetirementPicker(true)}
           activeOpacity={0.8}
         >
           <View className="flex-row items-center">
-            <FontAwesome name="calendar-check-o" size={14} className="text-blue-500 dark:text-blue-400 mr-3" />
+            <FontAwesome
+              name="calendar-check-o"
+              size={14}
+              className="text-blue-500 dark:text-blue-400 mr-3"
+            />
             <View>
               <Text className="text-[9px] text-slate-400 dark:text-slate-500 font-bold uppercase">
                 Retirement Date
               </Text>
               <Text className="text-sm text-slate-800 dark:text-slate-200 font-semibold mt-0.5">
-                {retirementDate.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
+                {retirementDate.toLocaleDateString("en-US", {
+                  month: "short",
+                  day: "numeric",
+                  year: "numeric",
+                })}
               </Text>
             </View>
           </View>
-          <FontAwesome name="chevron-down" size={10} className="text-slate-400 dark:text-slate-650" />
+          <FontAwesome
+            name="chevron-down"
+            size={10}
+            className="text-slate-400 dark:text-slate-650"
+          />
         </TouchableOpacity>
 
         {/* JOINING PICKER */}
@@ -113,7 +158,11 @@ export default function ServiceCalculator() {
             display="default"
             onChange={(event, selectedDate) => {
               setShowJoiningPicker(false);
-              if (selectedDate) setJoiningDate(selectedDate);
+              if (selectedDate) {
+                setJoiningDate(selectedDate);
+                setOverallService(null);
+                setRemainingService(null);
+              }
             }}
           />
         )}
@@ -126,11 +175,25 @@ export default function ServiceCalculator() {
             display="default"
             onChange={(event, selectedDate) => {
               setShowRetirementPicker(false);
-              if (selectedDate) setRetirementDate(selectedDate);
+              if (selectedDate) {
+                setRetirementDate(selectedDate);
+                setOverallService(null);
+                setRemainingService(null);
+              }
             }}
           />
         )}
       </View>
+
+      <TouchableOpacity
+        onPress={handleCalculate}
+        className="bg-blue-600 rounded-xl py-4 items-center mt-4"
+        activeOpacity={0.8}
+      >
+        <Text className="text-white font-bold text-base">
+          Calculate Service
+        </Text>
+      </TouchableOpacity>
 
       {/* METRIC RESULTS TITLE */}
       <Text className="text-[10px] font-bold text-slate-400 dark:text-slate-500 tracking-wider uppercase mb-2.5 pl-0.5">
@@ -138,52 +201,88 @@ export default function ServiceCalculator() {
       </Text>
 
       {/* OVERALL SERVICE CARD */}
-      <View className="bg-white dark:bg-[#161E2E] border border-slate-200 dark:border-slate-850 rounded-2xl p-5 mb-4 shadow-sm dark:shadow-none">
-        <View className="flex-row items-center mb-4 pb-2 border-b border-slate-100 dark:border-slate-800/40">
-          <FontAwesome name="briefcase" size={12} className="text-blue-500 dark:text-blue-400" />
-          <Text className="text-[9px] font-bold text-slate-450 dark:text-slate-500 uppercase ml-2">
-            Overall Service
-          </Text>
+      {overallService && (
+        <View className="bg-white dark:bg-[#161E2E] border border-slate-200 dark:border-slate-850 rounded-2xl p-5 mb-4 shadow-sm dark:shadow-none">
+          <View className="flex-row items-center mb-4 pb-2 border-b border-slate-100 dark:border-slate-800/40">
+            <FontAwesome
+              name="briefcase"
+              size={12}
+              className="text-blue-500 dark:text-blue-400"
+            />
+            <Text className="text-[9px] font-bold text-slate-450 dark:text-slate-500 uppercase ml-2">
+              Overall Service
+            </Text>
+          </View>
+          <View className="flex-row justify-between">
+            <View className="items-center flex-1">
+              <Text className="text-2xl font-bold text-slate-800 dark:text-white">
+                {overallService.years}
+              </Text>
+              <Text className="text-[9px] font-semibold text-slate-400 dark:text-slate-505 mt-0.5 uppercase">
+                Years
+              </Text>
+            </View>
+            <View className="items-center flex-1 border-x border-slate-100 dark:border-slate-850">
+              <Text className="text-2xl font-bold text-slate-800 dark:text-white">
+                {overallService.months}
+              </Text>
+              <Text className="text-[9px] font-semibold text-slate-400 dark:text-slate-505 mt-0.5 uppercase">
+                Months
+              </Text>
+            </View>
+            <View className="items-center flex-1">
+              <Text className="text-2xl font-bold text-slate-800 dark:text-white">
+                {overallService.days}
+              </Text>
+              <Text className="text-[9px] font-semibold text-slate-400 dark:text-slate-505 mt-0.5 uppercase">
+                Days
+              </Text>
+            </View>
+          </View>
         </View>
-        <View className="flex-row justify-between">
-          <View className="items-center flex-1">
-            <Text className="text-2xl font-bold text-slate-800 dark:text-white">{overallService.years}</Text>
-            <Text className="text-[9px] font-semibold text-slate-400 dark:text-slate-505 mt-0.5 uppercase">Years</Text>
-          </View>
-          <View className="items-center flex-1 border-x border-slate-100 dark:border-slate-850">
-            <Text className="text-2xl font-bold text-slate-800 dark:text-white">{overallService.months}</Text>
-            <Text className="text-[9px] font-semibold text-slate-400 dark:text-slate-505 mt-0.5 uppercase">Months</Text>
-          </View>
-          <View className="items-center flex-1">
-            <Text className="text-2xl font-bold text-slate-800 dark:text-white">{overallService.days}</Text>
-            <Text className="text-[9px] font-semibold text-slate-400 dark:text-slate-505 mt-0.5 uppercase">Days</Text>
-          </View>
-        </View>
-      </View>
+      )}
 
       {/* REMAINING SERVICE CARD */}
-      <View className="bg-white dark:bg-[#161E2E] border border-slate-200 dark:border-slate-850 rounded-2xl p-5 shadow-sm dark:shadow-none">
-        <View className="flex-row items-center mb-4 pb-2 border-b border-slate-100 dark:border-slate-800/40">
-          <FontAwesome name="hourglass-end" size={11} className="text-blue-500 dark:text-blue-400" />
-          <Text className="text-[9px] font-bold text-slate-450 dark:text-slate-500 uppercase ml-2">
-            Remaining Service
-          </Text>
+      {remainingService && (
+        <View className="bg-white dark:bg-[#161E2E] border border-slate-200 dark:border-slate-850 rounded-2xl p-5 shadow-sm dark:shadow-none">
+          <View className="flex-row items-center mb-4 pb-2 border-b border-slate-100 dark:border-slate-800/40">
+            <FontAwesome
+              name="hourglass-end"
+              size={11}
+              className="text-blue-500 dark:text-blue-400"
+            />
+            <Text className="text-[9px] font-bold text-slate-450 dark:text-slate-500 uppercase ml-2">
+              Remaining Service
+            </Text>
+          </View>
+          <View className="flex-row justify-between">
+            <View className="items-center flex-1">
+              <Text className="text-2xl font-bold text-slate-800 dark:text-white">
+                {remainingService.years}
+              </Text>
+              <Text className="text-[9px] font-semibold text-slate-400 dark:text-slate-505 mt-0.5 uppercase">
+                Years
+              </Text>
+            </View>
+            <View className="items-center flex-1 border-x border-slate-100 dark:border-slate-850">
+              <Text className="text-2xl font-bold text-slate-800 dark:text-white">
+                {remainingService.months}
+              </Text>
+              <Text className="text-[9px] font-semibold text-slate-400 dark:text-slate-505 mt-0.5 uppercase">
+                Months
+              </Text>
+            </View>
+            <View className="items-center flex-1">
+              <Text className="text-2xl font-bold text-slate-800 dark:text-white">
+                {remainingService.days}
+              </Text>
+              <Text className="text-[9px] font-semibold text-slate-400 dark:text-slate-505 mt-0.5 uppercase">
+                Days
+              </Text>
+            </View>
+          </View>
         </View>
-        <View className="flex-row justify-between">
-          <View className="items-center flex-1">
-            <Text className="text-2xl font-bold text-slate-800 dark:text-white">{remainingService.years}</Text>
-            <Text className="text-[9px] font-semibold text-slate-400 dark:text-slate-505 mt-0.5 uppercase">Years</Text>
-          </View>
-          <View className="items-center flex-1 border-x border-slate-100 dark:border-slate-850">
-            <Text className="text-2xl font-bold text-slate-800 dark:text-white">{remainingService.months}</Text>
-            <Text className="text-[9px] font-semibold text-slate-400 dark:text-slate-505 mt-0.5 uppercase">Months</Text>
-          </View>
-          <View className="items-center flex-1">
-            <Text className="text-2xl font-bold text-slate-800 dark:text-white">{remainingService.days}</Text>
-            <Text className="text-[9px] font-semibold text-slate-400 dark:text-slate-505 mt-0.5 uppercase">Days</Text>
-          </View>
-        </View>
-      </View>
+      )}
     </View>
   );
 }

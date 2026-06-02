@@ -6,3 +6,7 @@ run:
 
 run-c:
 	npx expo start -c
+
+doctor:
+	npx expo-doctor
+

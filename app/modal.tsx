@@ -14,15 +14,20 @@ export default function ModalScreen() {
             resizeMode="cover"
           />
         </View>
-        <Text className="text-2xl font-black text-slate-900 dark:text-white tracking-widest">CHRONIX</Text>
-        <Text className="text-[10px] text-slate-400 dark:text-slate-500 font-bold tracking-wider uppercase mt-1">Version 1.0.0</Text>
+        <Text className="text-2xl font-black text-slate-900 dark:text-white tracking-widest">
+          CHRONIX
+        </Text>
+        <Text className="text-[10px] text-slate-400 dark:text-slate-500 font-bold tracking-wider uppercase mt-1">
+          Version 1.0.0
+        </Text>
       </View>
 
       <View className="my-5 h-[1px] bg-slate-200 dark:bg-slate-800/40 w-full" />
 
       {/* DESCRIPTION */}
       <Text className="text-sm text-slate-505 dark:text-slate-400 text-center leading-5 mb-6">
-        A premium, high-tech temporal utility workspace providing modern calculation and format conversion tools with extreme precision.
+        A premium, high-tech temporal utility workspace providing modern
+        calculation and format conversion tools with extreme precision.
       </Text>
 
       {/* MODULE DIRECTORY */}
@@ -32,9 +37,15 @@ export default function ModalScreen() {
         </Text>
 
         <View className="flex-row items-start mb-3.5">
-          <FontAwesome name="check-circle" size={16} className="text-emerald-500 mr-3 mt-0.5" />
+          <FontAwesome
+            name="check-circle"
+            size={16}
+            className="text-emerald-500 mr-3 mt-0.5"
+          />
           <View className="flex-1">
-            <Text className="text-sm font-bold text-slate-850 dark:text-white">Age Calculator</Text>
+            <Text className="text-sm font-bold text-slate-850 dark:text-white">
+              Age Calculator
+            </Text>
             <Text className="text-xs text-slate-500 dark:text-slate-400 mt-0.5 leading-4 pr-4">
               Compute intervals, years, months, and total elapsed days.
             </Text>
@@ -42,11 +53,34 @@ export default function ModalScreen() {
         </View>
 
         <View className="flex-row items-start mb-3.5">
-          <FontAwesome name="check-circle" size={16} className="text-emerald-500 mr-3 mt-0.5" />
+          <FontAwesome
+            name="check-circle"
+            size={16}
+            className="text-emerald-500 mr-3 mt-0.5"
+          />
           <View className="flex-1">
-            <Text className="text-sm font-bold text-slate-850 dark:text-white">Time Converter</Text>
+            <Text className="text-sm font-bold text-slate-850 dark:text-white">
+              Time Converter
+            </Text>
             <Text className="text-xs text-slate-500 dark:text-slate-400 mt-0.5 leading-4 pr-4">
               Seamless translation between 24-hour military and 12-hour clocks.
+            </Text>
+          </View>
+        </View>
+
+        <View className="flex-row items-start mb-3.5">
+          <FontAwesome
+            name="check-circle"
+            size={16}
+            className="text-emerald-500 mr-3 mt-0.5"
+          />
+          <View className="flex-1">
+            <Text className="text-sm font-bold text-slate-850 dark:text-white">
+              Service Calculator
+            </Text>
+            <Text className="text-xs text-slate-500 dark:text-slate-400 mt-0.5 leading-4 pr-4">
+              Precision time interval calculation. Compute years, months, weeks,
+              and total days elapsed between two selected dates.
             </Text>
           </View>
         </View>
@@ -56,9 +90,15 @@ export default function ModalScreen() {
         </Text>
 
         <View className="flex-row items-start mb-1">
-          <FontAwesome name="lock" size={16} className="text-slate-400 dark:text-slate-600 mr-3 mt-0.5" />
+          <FontAwesome
+            name="lock"
+            size={16}
+            className="text-slate-400 dark:text-slate-600 mr-3 mt-0.5"
+          />
           <View className="flex-1">
-            <Text className="text-sm font-bold text-slate-400 dark:text-slate-600">Timezone Sync (Soon)</Text>
+            <Text className="text-sm font-bold text-slate-400 dark:text-slate-600">
+              Timezone Sync (Soon)
+            </Text>
             <Text className="text-xs text-slate-400 dark:text-slate-700 mt-0.5 leading-4 pr-4">
               Multi-locale timezone calculations and tracking.
             </Text>
