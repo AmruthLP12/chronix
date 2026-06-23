@@ -20,6 +20,13 @@ export const ACTIVE_UTILITIES = [
     description:
       "Calculate overall service duration and remaining tenure till retirement.",
   },
+  {
+    title: "Salary Leave Calculator",
+    route: "/leave_salary",
+    icon: "money",
+    description:
+      "Calculate leave salary. Supports basic pay, DA, and EL/HPL balances.",
+  },
 ];
 
 export const UPCOMING_UTILITIES = [
