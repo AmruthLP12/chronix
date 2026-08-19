@@ -1,4 +1,5 @@
-import { ScrollView, Text, View } from "react-native";
+import { useMemo, useState } from "react";
+import { Pressable, ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import SectionHeader from "@/components/ui/SectionHeader";
@@ -10,7 +11,27 @@ import {
 } from "../../constants/utilities";
 
 export default function HomeScreen() {
+  const [selectedCategory, setSelectedCategory] = useState("All");
+
   const activeCount = ACTIVE_UTILITIES.length;
+
+  const categories = useMemo(() => {
+    const uniqueCategories = [
+      ...new Set(ACTIVE_UTILITIES.map((item) => item.category)),
+    ];
+
+    return ["All", ...uniqueCategories];
+  }, []);
+
+  const filteredUtilities = useMemo(() => {
+    if (selectedCategory === "All") {
+      return ACTIVE_UTILITIES;
+    }
+
+    return ACTIVE_UTILITIES.filter(
+      (item) => item.category === selectedCategory,
+    );
+  }, [selectedCategory]);
 
   return (
     <SafeAreaView className="flex-1 bg-slate-50 dark:bg-[#0B0F19]">
@@ -33,7 +54,44 @@ export default function HomeScreen() {
           badge={`${activeCount} Active`}
         />
 
-        {ACTIVE_UTILITIES.map((item) => (
+        {/* Category Filters */}
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={{
+            gap: 8,
+            paddingVertical: 12,
+          }}
+        >
+          {categories.map((category) => {
+            const active = selectedCategory === category;
+
+            return (
+              <Pressable
+                key={category}
+                onPress={() => setSelectedCategory(category)}
+                className={`px-4 py-2 rounded-full border ${
+                  active
+                    ? "bg-slate-900 border-slate-900 dark:bg-white dark:border-white"
+                    : "bg-white border-slate-200 dark:bg-slate-900 dark:border-slate-800"
+                }`}
+              >
+                <Text
+                  className={`text-xs font-semibold ${
+                    active
+                      ? "text-white dark:text-slate-900"
+                      : "text-slate-500 dark:text-slate-400"
+                  }`}
+                >
+                  {category}
+                </Text>
+              </Pressable>
+            );
+          })}
+        </ScrollView>
+
+        {/* Filtered Utilities */}
+        {filteredUtilities.map((item) => (
           <UtilityCard
             key={item.title}
             title={item.title}
